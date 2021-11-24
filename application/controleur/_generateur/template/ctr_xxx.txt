@@ -1,0 +1,57 @@
+<?php
+//controleur secondaire associé à la table [table]
+require_once "../application/table/[table].php";
+
+/*
+Affiche la liste des enregistrements de la table [table]
+*/
+function a_liste()
+{
+    $result = [table]_findAll();
+    $vue = "../application/controleur/[table]/[table]_liste.php";
+    require "../application/gabarit/gabarit.php";
+}
+
+/*
+Affiche le formulaire d'édition/création d'un enregistrement de la table [table]
+Si $id==0 alors création sinon édition
+*/
+function a_edit()
+{
+    $id = (isset($_GET["id"])) ? $_GET["id"] : 0;
+    if ($id == 0) {
+        [initChamp]
+    } else {
+        $id = mres($id);
+        $row = [table]_charger($id);
+        extract(array_map("hsc", $row));
+    }
+
+    $vue = "../application/controleur/[table]/[table]_edit.php";
+    require "../application/gabarit/gabarit.php";
+}
+
+/*
+Suppression de l'enregsitrement $id
+*/
+function a_delete()
+{
+    $id = (isset($_GET["id"])) ? $_GET["id"] : 0;
+    //protection contre injection sql
+    $id = mres($id);
+    [table]_delete($id);
+
+    header("location:" . hlien("[table]", "liste"));
+}
+
+/*
+INSERT or UPDATE d'un enregistrement de la table [table]
+*/
+function a_save()
+{
+    if (isset($_POST["btSubmit"])) {
+        [table]_save($_POST);
+    }
+
+    header("location:" . hlien("[table]", "liste"));
+}

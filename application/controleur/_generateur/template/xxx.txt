@@ -1,0 +1,61 @@
+<?php
+//@return all records
+function [table]_findAll()
+{
+    global $link;
+
+    $sql = "select * from [table]";
+    $result = mysqli_query($link, $sql);
+    if ($result === false) {
+        echo mysqli_error($link);
+        exit();
+    }
+    return $result;
+}
+
+//@return one record
+function [table]_charger($id)
+{
+    global $link;
+
+    $sql = "select * from [table] where [pk]=$id";
+    $result = mysqli_query($link, $sql);
+    if ($result === false) {
+        echo mysqli_error($link);
+        exit();
+    }
+
+    return mysqli_fetch_assoc($result);
+}
+
+//delete one record
+function [table]_delete($id)
+{
+    global $link;
+
+    $sql = "delete from [table] where [pk]=$id";
+    $result = mysqli_query($link, $sql);
+    if ($result === false) {
+        echo mysqli_error($link);
+        exit();
+    }
+}
+
+//INSERT or UPDATE one record
+function [table]_save($data)
+{
+    global $link;
+
+    extract(array_map("mres", $data));
+
+    if ($[pk]==0)
+        $sql="insert into [table] ([listeChamp]) values (null,[listeValeur])";
+    else 
+        $sql="update [table] set [listeChampValeur] where [pk]=$[pk]";
+
+    $result = mysqli_query($link, $sql);
+    if ($result === false) {
+        echo mysqli_error($link);
+        exit();
+    }
+}

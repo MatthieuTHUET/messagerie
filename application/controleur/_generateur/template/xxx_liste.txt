@@ -1,0 +1,25 @@
+        <table>
+            <caption><a href="<?=hlien("[table]","edit","id",0)?>">Créer enregistrement</a></caption>
+            <thead>
+                <tr>
+                    [thChamp]
+                    <th>Edition</th>
+                    <th>Suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($row = mysqli_fetch_assoc($result)) {
+                    //Application de htmlspecialchar à chaque élement de $row
+                    extract(array_map("hsc",$row));    
+                    ?>
+                <tr>
+                    [tdValeur]
+                    <td><a href="<?=hlien("[table]","edit","id",$[pk])?>">Edition</a></td>
+                    <td><a href="<?=hlien("[table]","delete","id",$[pk])?>">Suppression</a></td>
+                </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>

@@ -1,0 +1,9 @@
+if ($condition)
+    $x=$valeur1;
+else
+    $x=$valeur2;
+
+$x = ($condition) ? $valeur1 : $valeur2;
+
+$x = (isset($y)) ? $y : $valeur0;
+$x = $y ?? $valeur0;

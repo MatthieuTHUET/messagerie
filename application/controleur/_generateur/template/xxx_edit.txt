@@ -1,0 +1,10 @@
+        <form method="post" action="<?=hlien("[table]","save")?>">
+            <input type="hidden" name="[pk]" value="<?=$[pk]?>">
+            <p>
+                <label>[pk] : </label><b><?=$[pk]?></b>
+            </p>
+            [inputChamp]
+            <p>
+                <input type="submit" name="btSubmit" value="Envoyer">
+            </p>
+        </form>

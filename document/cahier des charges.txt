@@ -1,0 +1,31 @@
+Définir et créer une base de données consituée des tables suivantes :
+table profil :
+- pro_id AI
+- pro_libelle string
+
+table utilisateur :
+- uti_id AI
+- uti_login string
+- uti_mdp string
+- uti_profil int
+
+table message :
+- mes_id AI
+- mes_auteur int 
+- mes_datetime datetime
+- mes_text string
+
+Application :
+Pour le profil user, modo et admin
+- s'inscrire
+- s'authentifier
+- afficher les messages
+- écrire un message
+- supprimer/modifier ses messages
+
+Pour le profil modo et admin
+- supprimer un message
+
+pour le profil admin
+- CRUD
+
